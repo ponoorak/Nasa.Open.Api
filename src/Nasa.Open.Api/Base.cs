@@ -15,8 +15,8 @@
     {
         private readonly ILogger Logger = LogManager.GetCurrentClassLogger();
         private readonly string _apiKey;
-        private NasaOpenApiState _state;
-        private static HttpClient Client = new HttpClient();
+        private readonly NasaOpenApiState _state;
+        private static readonly HttpClient _client = new HttpClient();
 
         public Base(string apiKey, NasaOpenApiState state)
         {
@@ -24,15 +24,19 @@
             _state = state;
         }
 
-        public async Task<TReturn> Request<TReturn>(IReadOnlyDictionary<string, object> arguments = null)
+        public async Task<TReturn> Request<TReturn>(IReadOnlyDictionary<string, object> arguments = null, string suffix = "")
         {
             Logger.Trace("Request");
 
             var att = GetType().GetCustomAttribute<EndPointAttribute>();
+            if (att == null)
+            {
+                throw new ApplicationException($"Missing EndPoint attribute in {this.GetType()}");
+            }
 
             var builder = new UriBuilder(att.BaseAddress)
             {
-                Path = att.Path
+                Path = att.Path + "/" + suffix
             };
 
             var query = HttpUtility.ParseQueryString(builder.Query);
@@ -48,15 +52,16 @@
             builder.Query = query.ToString();
 
             Logger.Debug($"Call To {builder.Uri} {builder.Path}");
-            var s = await Client.GetAsync(builder.Uri);
+            var s = await _client.GetAsync(builder.Uri);
 
             Logger.Trace($"Return code: {s.StatusCode}");
             s.EnsureSuccessStatusCode();
             _state.Remaining = Convert.ToInt32(s.Headers.GetValues("X-RateLimit-Remaining").FirstOrDefault());
             _state.Limit = Convert.ToInt32(s.Headers.GetValues("X-RateLimit-Limit").FirstOrDefault());
+
+            Logger.Debug($"Result Status Remaining:{_state.Remaining} Limit{_state.Limit}");
+
             var response = await s.Content.ReadAsStringAsync();
-            
-            Logger.Trace($"Response code: {response}");
             return JsonConvert.DeserializeObject<TReturn>(response);
         }
     }

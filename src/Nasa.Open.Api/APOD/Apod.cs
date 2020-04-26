@@ -3,7 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using Attributes;
-    
+    using Extensions;
+
     [EndPoint(Consts.BASE_URL1, "planetary/apod")]
     internal class Apod: Base, IApod
     {
@@ -18,7 +19,7 @@
 
             if (date != null)
             {
-                messageArgs.Add("date", date.Value.ToString("yyyy-MM-dd"));
+                messageArgs.Add("date", date.Value.ToDefault());
             }
 
             var result = await Request<ApodModel>(messageArgs);

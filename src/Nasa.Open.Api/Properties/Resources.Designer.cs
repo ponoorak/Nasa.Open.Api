@@ -59,5 +59,14 @@ namespace Nasa.Open.Api.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to yyyy-MM-dd.
+        /// </summary>
+        internal static string DefaultApiDateFormat {
+            get {
+                return ResourceManager.GetString("DefaultApiDateFormat", resourceCulture);
+            }
+        }
     }
 }
