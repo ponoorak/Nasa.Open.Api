@@ -15,7 +15,7 @@
         public string Explanation { get; set; }
 
         [JsonProperty("hdurl")]
-        public string HighQualityUrl { get; set; }
+        public Uri HighQualityUrl { get; set; }
 
         [JsonProperty("media_type")]
         public string MediaType { get; set; }
@@ -27,6 +27,6 @@
         public string Title { get; set; }
 
         [JsonProperty("url")]
-        public string Url { get; set; }
+        public Uri Url { get; set; }
     }
 }

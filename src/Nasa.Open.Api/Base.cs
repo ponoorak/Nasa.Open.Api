@@ -24,7 +24,7 @@
             _state = state;
         }
 
-        public async Task<TReturn> Request<TReturn>(IReadOnlyDictionary<string, object> arguments = null, string suffix = "")
+        public async Task<HttpContent> Request(IReadOnlyDictionary<string, object> arguments = null, string suffix = "")
         {
             Logger.Trace("Request");
 
@@ -61,8 +61,21 @@
 
             Logger.Debug($"Result Status Remaining:{_state.Remaining} Limit{_state.Limit}");
 
-            var response = await s.Content.ReadAsStringAsync();
+            return s.Content;
+
+        }
+
+        public async Task<TReturn> Request<TReturn>(IReadOnlyDictionary<string, object> arguments = null, string suffix = "")
+        {
+            var content = await Request(arguments, suffix);
+            var response = await content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<TReturn>(response);
+        }
+
+        public async Task<byte[]> RequestBinary(IReadOnlyDictionary<string, object> arguments = null, string suffix = "")
+        {
+            var content = await Request(arguments, suffix);
+            return await content.ReadAsByteArrayAsync();
         }
     }
 }
