@@ -71,5 +71,13 @@
         /// </summary>
         /// <see cref="INeoSentry"/>
         public INeoSentry NeoSentry => new NeoSentry(_apiKey, _nasaOpenApiState);
+
+        /// <summary>
+        /// Browse the overall Asteroid data-set
+        /// </summary>
+        /// <see cref="INeoBrowse"/>
+        public INeoBrowse NeoBrowse => new NeoBrowse(_apiKey, _nasaOpenApiState);
+
+        public INeoStats NeoStats => new NeoStats(_apiKey, _nasaOpenApiState);
     }
 }
