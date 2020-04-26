@@ -10,7 +10,7 @@ namespace Nasa.Open.Api.Core
         static void Main(string[] args)
         {
             var api = new NasaOpenApi(ApiKey);
-            var apodService = api.Apod.GetAsync(DateTime.Now.AddDays(-11), true).Result;
+            var apodService = api.Apod.GetAsync().Result;
             var statsService = api.NeoStats.GetAsync().Result;
 
             Console.WriteLine($"Result APOD Url = {apodService.Url}");
