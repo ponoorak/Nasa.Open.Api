@@ -1,7 +1,7 @@
 # Nasa.Open.Api
 Unofficial .NET Wrapper for { NASA APIs } (https://api.nasa.gov)
 
-Underdevelopment (now support: APOD,NEO)
+Underdevelopment (now support: APOD,NEO, MarsPhotos)
 # Ussage
 
 ``` C#
@@ -19,6 +19,7 @@ class Program
             Console.WriteLine($"Result NEO COUNT = {statsService.NeoCount}");
             Console.WriteLine($"Result Mars Length = {marsPhotos.Photos.Length}");
             Console.WriteLine($"Api Remaining Calls = {api.Remaining}");
-            Console.WriteLine($"Api Limit Calls = {api.Limit}");
+			Console.WriteLine($"Api Limit Calls = {api.Limit}");
+	}
 }
 ```
