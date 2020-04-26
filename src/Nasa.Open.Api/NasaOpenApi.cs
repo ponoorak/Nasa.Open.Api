@@ -4,6 +4,8 @@
     using APOD;
     using AsteroidsNeoWs;
     using Configuration;
+    using Mars.Photos;
+    using Mars.Weather;
 
     internal class NasaOpenApiState
     {
@@ -79,5 +81,15 @@
         public INeoBrowse NeoBrowse => new NeoBrowse(_apiKey, _nasaOpenApiState);
 
         public INeoStats NeoStats => new NeoStats(_apiKey, _nasaOpenApiState);
+
+        /// <summary>
+        /// This API is designed to collect image data gathered by NASA's Curiosity, Opportunity, and Spirit rovers on Mars
+        /// </summary>
+        public IMarsPhotos MarsPhotos => new MarsPhotos(_apiKey, _nasaOpenApiState);
+
+        /// <summary>
+        /// This API provides per-Sol summary data for each of the last seven available Sols
+        /// </summary>
+        //public IMarsWeather MarsWeather => new MarsWeather(_apiKey, _nasaOpenApiState);
     }
 }
