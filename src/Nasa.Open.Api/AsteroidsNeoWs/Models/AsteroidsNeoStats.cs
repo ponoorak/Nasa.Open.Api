@@ -18,6 +18,6 @@
         public string Source { get; set; }
 
         [JsonProperty("nasa_jpl_url")]
-        public string NasaJplUrl { get; set; }
+        public Uri NasaJplUrl { get; set; }
     }
 }

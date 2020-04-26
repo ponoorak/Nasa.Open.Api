@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace Nasa.Open.Api.AsteroidsNeoWs.Models
+﻿namespace Nasa.Open.Api.AsteroidsNeoWs.Models
 {
+    using System;
     using Newtonsoft.Json;
 
     public struct AsteroidsFeedNeo
@@ -20,7 +18,7 @@ namespace Nasa.Open.Api.AsteroidsNeoWs.Models
         public string Name { get; set; }
 
         [JsonProperty("nasa_jpl_url")]
-        public string NasaJplUrl { get; set; }
+        public Uri NasaJplUrl { get; set; }
 
         [JsonProperty("absolute_magnitude_h")]
         public double AbsoluteMagnitudeH { get; set; }

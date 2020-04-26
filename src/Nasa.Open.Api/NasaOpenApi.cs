@@ -4,6 +4,7 @@
     using APOD;
     using AsteroidsNeoWs;
     using Configuration;
+    using Earth;
     using Mars.Photos;
     using Mars.Weather;
 
@@ -85,11 +86,18 @@
         /// <summary>
         /// This API is designed to collect image data gathered by NASA's Curiosity, Opportunity, and Spirit rovers on Mars
         /// </summary>
-        public IMarsPhotos MarsPhotos => new MarsPhotos(_apiKey, _nasaOpenApiState);
+        public IMarsPhotos MarsPhotos =>   new MarsPhotos(_apiKey, _nasaOpenApiState);
 
         /// <summary>
         /// This API provides per-Sol summary data for each of the last seven available Sols
         /// </summary>
         //public IMarsWeather MarsWeather => new MarsWeather(_apiKey, _nasaOpenApiState);
+
+        public IEarthImage EarthImage => new EarthImage(_apiKey, _nasaOpenApiState);
+
+        /// <summary>
+        /// his endpoint retrieves the date-times and asset names for closest available imagery for a supplied location and date.
+        /// </summary>
+        public IEarthAssets EarthAssets => new EarthAssets(_apiKey, _nasaOpenApiState);
     }
 }
