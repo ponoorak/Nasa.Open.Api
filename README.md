@@ -1,6 +1,7 @@
 # Nasa.Open.Api
 Unofficial .NET Wrapper for { NASA APIs } (https://api.nasa.gov)
 
+Underdevelopment (now support: APOD,NEO)
 # Ussage
 
 ``` C#
