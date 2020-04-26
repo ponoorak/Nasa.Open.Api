@@ -4,6 +4,7 @@
     using APOD;
     using AsteroidsNeoWs;
     using Configuration;
+    using Mars.Photos;
 
     internal class NasaOpenApiState
     {
@@ -79,5 +80,10 @@
         public INeoBrowse NeoBrowse => new NeoBrowse(_apiKey, _nasaOpenApiState);
 
         public INeoStats NeoStats => new NeoStats(_apiKey, _nasaOpenApiState);
+
+        /// <summary>
+        /// This API is designed to collect image data gathered by NASA's Curiosity, Opportunity, and Spirit rovers on Mars
+        /// </summary>
+        public IMarsPhotos MarsPhotos => new MarsPhotos(_apiKey, _nasaOpenApiState);
     }
 }
