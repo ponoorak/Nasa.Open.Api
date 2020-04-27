@@ -37,7 +37,7 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v1
       with:
-        name: my-artifact  
+        name: result_${{ GITHUB_RUN_NUMBER }}
         path: src/Nasa.Open.Api/bin/Release
     
     - name: Setup nuget.config
