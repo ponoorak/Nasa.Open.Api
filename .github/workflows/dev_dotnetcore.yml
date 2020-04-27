@@ -44,6 +44,11 @@ jobs:
         name: results
         path: src/Nasa.Open.Api/bin/Release      
             
+#    - name: Deploy
+#      working-directory: src/Nasa.Open.Api
+#      run: dotnet nuget push "bin/Release/Nasa.Open.Api.0.1.0.nupkg" --source "github"
     - name: Deploy
       working-directory: src/Nasa.Open.Api
-      run: dotnet nuget push "bin/Release/Nasa.Open.Api.0.1.0.nupkg" --source "github"
+      run: find . -name *.nupkg -type f -print0 | xargs -0 -I pkg dotnet nuget push pkg -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
+      env:
+        nuget_api_key: ${{ secrets.NUGET_API_KEY }}
