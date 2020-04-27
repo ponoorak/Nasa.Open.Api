@@ -8,6 +8,11 @@
     /// </summary>
     public interface INeoToday
     {
+        /// <summary>
+        /// Get Data
+        /// </summary>
+        /// <returns>AsteroidsFeedData</returns>
+        /// <see cref="AsteroidsFeedData"/>
         Task<AsteroidsFeedData> GetAsync();
     }
 }

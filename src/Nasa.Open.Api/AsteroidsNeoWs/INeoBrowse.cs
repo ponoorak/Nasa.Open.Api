@@ -8,6 +8,11 @@
     /// </summary>
     public interface INeoBrowse
     {
-        Task<AsteroidsBrowseData> GetAsync(int page, int size);
+        /// <summary>
+        /// Browse the overall Asteroid data-set
+        /// </summary>
+        /// <returns>AsteroidsBrowseData</returns>
+        /// <see cref="AsteroidsBrowseData"/>
+        Task<AsteroidsBrowseData> GetAsync();
     }
 }
