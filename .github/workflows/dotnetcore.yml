@@ -1,10 +1,12 @@
-name: Developer .NET Core
+name: Release
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   build:
@@ -43,7 +45,12 @@ jobs:
       with:
         name: results
         path: src/Nasa.Open.Api/bin/Release      
-            
+    - name: Version and Tag
+      id: bump_version
+      uses: mathieudutour/github-tag-action@v1
+      with: 
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+      
 #    - name: Deploy
 #      working-directory: src/Nasa.Open.Api
 #      run: dotnet nuget push "bin/Release/Nasa.Open.Api.0.1.0.nupkg" --source "github"
