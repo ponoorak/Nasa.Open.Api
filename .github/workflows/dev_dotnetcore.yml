@@ -38,11 +38,11 @@ jobs:
       working-directory: src/Nasa.Open.Api
       run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
       
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v1
-      with:
-        name: results
-        path: src/Nasa.Open.Api/bin/Release        
+#    - name: Upload Artifacts
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: results
+#        path: src/Nasa.Open.Api/bin/Release        
       
     - name: Upload Artifacts 2
       uses: actions/upload-artifact@v1
