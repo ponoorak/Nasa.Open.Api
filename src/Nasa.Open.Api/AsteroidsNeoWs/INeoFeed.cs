@@ -17,6 +17,6 @@
         /// <param name="endDate">Ending date for asteroid search</param>
         /// <returns>AsteroidsFeedData</returns>
         /// <see cref="AsteroidsFeedData"/>
-        Task<AsteroidsFeedData> GetAsync(DateTime startDate, DateTime endDate);
+        Task<AsteroidsFeedData> GetAsync(DateTime startDate, DateTime? endDate = null);
     }
 }
