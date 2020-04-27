@@ -26,6 +26,9 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       working-directory: src    
       
+    - name: Secret Value
+      run: echo ${{ secrets.GITHUB_TOKEN }}
+      
     - name: Setup nuget.config
       working-directory: src/Nasa.Open.Api
       run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
