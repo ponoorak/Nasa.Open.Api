@@ -24,6 +24,8 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       working-directory: src    
     - name: Packing
+      working-directory: src/Nasa.Open.Api
       run: dotnet pack --configuration Release
     - name: Deploy
+      working-directory: src/Nasa.Open.Api
       run: dotnet nuget push "bin/Release/Nasa.Open.Api.1.0.0.nupkg" --source "github"
