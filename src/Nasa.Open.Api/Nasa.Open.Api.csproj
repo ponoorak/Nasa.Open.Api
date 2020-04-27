@@ -7,7 +7,7 @@
     <Company>Optra</Company>
     <PackageProjectUrl>https://github.com/ponoorak/Nasa.Open.Api</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ponoorak/Nasa.Open.Api</RepositoryUrl>
-    <Version>1.0.2</Version>
+    <Version>0.1.0</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
