@@ -52,4 +52,4 @@ jobs:
              
     - name: Deploy
       working-directory: src/Nasa.Open.Api
-      run: dotnet nuget push "bin/Release/Nasa.Open.Api.0.1.0.nupkg" --source https://nuget.pkg.github.com/ponoorak/index.json
+      run: dotnet nuget push "bin/Release/Nasa.Open.Api.0.1.0.nupkg" --source "github"
