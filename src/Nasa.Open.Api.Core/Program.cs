@@ -7,7 +7,6 @@ namespace Nasa.Open.Api.Core
 
     class Program
     {
-        //private const string ApiKey = "wc37Bqdjg1LUAwbYBYDpZE6XLuPvUlHYb274vmUs";
         private const string ApiKey = "DEMO_KEY";
 
         static void Main(string[] args)
