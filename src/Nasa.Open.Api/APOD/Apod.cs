@@ -6,7 +6,7 @@
     using Extensions;
 
     [EndPoint(Consts.BASE_URL1, "planetary/apod")]
-    internal class Apod: Base, IApod
+    internal class Apod: Connection, IApod
     {
         public Apod(string apiKey, NasaOpenApiState state) :base(apiKey, state)
         {

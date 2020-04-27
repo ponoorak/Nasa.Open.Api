@@ -5,7 +5,7 @@
     using Models;
 
     /// <summary>
-    /// his endpoint retrieves the date-times and asset names for closest available imagery for a supplied location and date.
+    /// this endpoint retrieves the date-times and asset names for closest available imagery for a supplied location and date.
     /// </summary>
     public interface IEarthAssets
     {

@@ -5,7 +5,7 @@
     using Models;
 
     [EndPoint(Consts.BASE_URL1, "neo/rest/v1/neo/sentry")]
-    internal class NeoSentry : Base, INeoSentry
+    internal class NeoSentry : Connection, INeoSentry
     {
         public NeoSentry(string apiKey, NasaOpenApiState state) : base(apiKey, state)
         {

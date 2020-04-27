@@ -29,7 +29,7 @@
     }
 
     [EndPoint(Consts.BASE_URL1, "mars-photos/api/v1/rovers/curiosity/photos")]
-    internal class MarsPhotos : Base, IMarsPhotos
+    internal class MarsPhotos : Connection, IMarsPhotos
     {
         public MarsPhotos(string apiKey, NasaOpenApiState state) : base(apiKey, state)
         {

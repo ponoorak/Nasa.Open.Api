@@ -16,8 +16,6 @@
 
     public class NasaOpenApi
     {
-        private readonly string _apiKey;
-
         public int Remaining => _nasaOpenApiState.Remaining;
         public int Limit => _nasaOpenApiState.Limit;
 
@@ -31,10 +29,20 @@
             //8 = DEMO_KEY
             if (string.IsNullOrWhiteSpace(apiKey) || apiKey.Length < 8)
             {
-                throw new ArithmeticException("Provided api_key is invalid, genere new key using https://api.nasa.gov/");
+                throw new ArgumentException("Provided api_key is invalid, genere new key using https://api.nasa.gov/");
             }
 
-            _apiKey = apiKey;
+            Apod = new Apod(apiKey, _nasaOpenApiState);
+            NeoFeed = new NeoFeed(apiKey, _nasaOpenApiState);
+            NeoLookup = new NeoLookup(apiKey, _nasaOpenApiState);
+            NeoToday = new NeoToday(apiKey, _nasaOpenApiState);
+            NeoSentry = new NeoSentry(apiKey, _nasaOpenApiState);
+            NeoBrowse = new NeoBrowse(apiKey, _nasaOpenApiState);
+            NeoStats = new NeoStats(apiKey, _nasaOpenApiState);
+            MarsPhotos = new MarsPhotos(apiKey, _nasaOpenApiState);
+            EarthImage = new EarthImage(apiKey, _nasaOpenApiState);
+            EarthAssets = new EarthAssets(apiKey, _nasaOpenApiState);
+            //MarsWeather = new MarsWeather(apiKey, _nasaOpenApiState);
         }
 
         /// <summary>
@@ -42,62 +50,68 @@
         /// </summary>
         /// <param name="config"></param>
         public NasaOpenApi(NasaOpenApiConfiguration config) : this(config.ApiKey)
-        { 
+        {
         }
 
         /// <summary>
         /// Interface for APOD https://apod.nasa.gov/apod/astropix.html
         /// </summary>
         /// <see cref="IApod"/>
-        public IApod Apod => new Apod(_apiKey, _nasaOpenApiState);
+        public IApod Apod { get; }
 
         /// <summary>
         /// Retrieve a list of Asteroids based on their closest approach date to Earth
         /// </summary>
         /// <see cref="INeoFeed"/>
-        public INeoFeed NeoFeed => new NeoFeed(_apiKey, _nasaOpenApiState);
+        public INeoFeed NeoFeed { get; }
 
         /// <summary>
         /// Lookup a specific Asteroid based on its NASA JPL small body (SPK-ID) 
         /// </summary>
         /// <see cref="INeoLookup"/>
-        public INeoLookup NeoLookup => new NeoLookup(_apiKey, _nasaOpenApiState);
+        public INeoLookup NeoLookup { get; }
 
         /// <summary>
         /// Near Earth Objects Today
         /// </summary>
         ///<see cref="INeoToday"/>
-        public INeoToday NeoToday => new NeoToday(_apiKey, _nasaOpenApiState);
+        public INeoToday NeoToday { get; }
 
         /// <summary>
         /// Nasa Earth Impact Monitoring
         /// </summary>
         /// <see cref="INeoSentry"/>
-        public INeoSentry NeoSentry => new NeoSentry(_apiKey, _nasaOpenApiState);
+        public INeoSentry NeoSentry { get; }
 
         /// <summary>
         /// Browse the overall Asteroid data-set
         /// </summary>
         /// <see cref="INeoBrowse"/>
-        public INeoBrowse NeoBrowse => new NeoBrowse(_apiKey, _nasaOpenApiState);
+        public INeoBrowse NeoBrowse { get; }
 
-        public INeoStats NeoStats => new NeoStats(_apiKey, _nasaOpenApiState);
+        public INeoStats NeoStats { get; }
 
         /// <summary>
         /// This API is designed to collect image data gathered by NASA's Curiosity, Opportunity, and Spirit rovers on Mars
         /// </summary>
-        public IMarsPhotos MarsPhotos =>   new MarsPhotos(_apiKey, _nasaOpenApiState);
+        /// <see cref="IMarsPhotos"/>
+        public IMarsPhotos MarsPhotos { get; }
+
+        ///// <summary>
+        ///// This API provides per-Sol summary data for each of the last seven available Sols
+        ///// </summary>
+        ///// <see cref="MarsWeather"/>
+        //public IMarsWeather MarsWeather { get; }
 
         /// <summary>
-        /// This API provides per-Sol summary data for each of the last seven available Sols
+        /// This endpoint retrieves the Landsat 8 image for the supplied location and date. 
         /// </summary>
-        //public IMarsWeather MarsWeather => new MarsWeather(_apiKey, _nasaOpenApiState);
-
-        public IEarthImage EarthImage => new EarthImage(_apiKey, _nasaOpenApiState);
+        /// <see cref="IEarthImage"/>
+        public IEarthImage EarthImage { get; }
 
         /// <summary>
-        /// his endpoint retrieves the date-times and asset names for closest available imagery for a supplied location and date.
+        /// this endpoint retrieves the date-times and asset names for closest available imagery for a supplied location and date.
         /// </summary>
-        public IEarthAssets EarthAssets => new EarthAssets(_apiKey, _nasaOpenApiState);
+        public IEarthAssets EarthAssets { get; }
     }
 }
