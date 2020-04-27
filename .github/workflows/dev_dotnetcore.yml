@@ -48,7 +48,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: results2        
-        parh: src/Nasa.Open.Api/nuget.config
+        path: src/Nasa.Open.Api/nuget.config
              
     - name: Deploy
       working-directory: src/Nasa.Open.Api
