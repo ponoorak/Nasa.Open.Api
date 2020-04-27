@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nasa.Open.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Nasa.Open.Api.APOD.IApod">
+            <summary>
+            Interface for APOD https://apod.nasa.gov/apod/astropix.html
+            </summary>
+        </member>
+        <member name="M:Nasa.Open.Api.APOD.IApod.GetAsync(System.Nullable{System.DateTime},System.Boolean)">
+            <summary>
+            Return Astronomy Picture Of a Day
+            </summary>
+            <param name="date">The date of the APOD image to retrieve</param>
+            <param name="highDefinition">Retrieve the URL for the high resolution image</param>
+            <returns>ApodModel</returns>
+            <see cref="T:Nasa.Open.Api.APOD.ApodModel"/>
+        </member>
+        <member name="T:Nasa.Open.Api.APOD.ApodModel">
+            <summary>
+            Response for APOD request
+            </summary>
+        </member>
+        <member name="T:Nasa.Open.Api.AsteroidsNeoWs.INeoBrowse">
+            <summary>
+            Browse the overall Asteroid data-set
+            </summary>
+        </member>
+        <member name="M:Nasa.Open.Api.AsteroidsNeoWs.INeoBrowse.GetAsync">
+            <summary>
+            Browse the overall Asteroid data-set
+            </summary>
+            <returns>AsteroidsBrowseData</returns>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.Models.AsteroidsBrowseData"/>
+        </member>
+        <member name="T:Nasa.Open.Api.AsteroidsNeoWs.INeoFeed">
+            <summary>
+            Retrieve a list of Asteroids based on their closest approach date to Earth
+            https://api.nasa.gov/
+            </summary>
+        </member>
+        <member name="M:Nasa.Open.Api.AsteroidsNeoWs.INeoFeed.GetAsync(System.DateTime,System.Nullable{System.DateTime})">
+            <summary>
+            Retrieve data
+            </summary>
+            <param name="startDate">Starting date for asteroid search</param>
+            <param name="endDate">Ending date for asteroid search</param>
+            <returns>AsteroidsFeedData</returns>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.Models.AsteroidsFeedData"/>
+        </member>
+        <member name="T:Nasa.Open.Api.AsteroidsNeoWs.INeoLookup">
+            <summary>
+            Lookup a specific Asteroid based on its NASA JPL small body (SPK-ID) 
+            </summary>
+        </member>
+        <member name="M:Nasa.Open.Api.AsteroidsNeoWs.INeoLookup.GetAsync(System.Int32)">
+            <summary>
+            Details neo asteroid
+            </summary>
+            <param name="asteroidId">Asteroid SPK-ID correlates to the NASA JPL small body</param>
+            <returns>AsteroidsFeedNeo</returns>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.Models.AsteroidsFeedNeo"/>
+            <see cref="P:Nasa.Open.Api.AsteroidsNeoWs.Models.AsteroidsFeedNeo.Id"/>
+        </member>
+        <member name="T:Nasa.Open.Api.AsteroidsNeoWs.INeoSentry">
+            <summary>
+            Nasa Earth Impact Monitoring
+            </summary>
+        </member>
+        <member name="M:Nasa.Open.Api.AsteroidsNeoWs.INeoSentry.GetAsync(System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Get data about impact monitor
+            </summary>
+            <param name="active">is asteroid still active</param>
+            <param name="page">page nr</param>
+            <param name="size">items per page</param>
+            <returns>AsteroidsSentryData</returns>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.Models.AsteroidsSentryData"/>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.Models.AsteroidsSentryObject"/>
+        </member>
+        <member name="M:Nasa.Open.Api.AsteroidsNeoWs.INeoSentry.GetAsync(System.Int32)">
+            <summary>
+            Detail information about asteroid
+            </summary>
+            <param name="asteroidId"></param>
+            <returns>AsteroidsSentryObject</returns>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.Models.AsteroidsSentryObject"/>
+        </member>
+        <member name="T:Nasa.Open.Api.AsteroidsNeoWs.INeoToday">
+            <summary>
+            Neo Asteroids today
+            </summary>
+        </member>
+        <member name="M:Nasa.Open.Api.AsteroidsNeoWs.INeoToday.GetAsync">
+            <summary>
+            Get Data
+            </summary>
+            <returns>AsteroidsFeedData</returns>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.Models.AsteroidsFeedData"/>
+        </member>
+        <member name="T:Nasa.Open.Api.Attributes.EndPointAttribute">
+            <summary>
+            Service BaseAddress eg : "planetary/apod"
+            </summary>
+        </member>
+        <member name="T:Nasa.Open.Api.Configuration.NasaOpenApiConfiguration">
+            <summary>
+            Configuration model for Api.
+            It can be used as parameter or setting in config
+            </summary>
+        </member>
+        <member name="P:Nasa.Open.Api.Configuration.NasaOpenApiConfiguration.ApiKey">
+            <summary>
+            API ApiKey. You Can setup APi Key on https://api.nasa.gov/
+            </summary>
+        </member>
+        <member name="T:Nasa.Open.Api.Earth.IEarthAssets">
+            <summary>
+            this endpoint retrieves the date-times and asset names for closest available imagery for a supplied location and date.
+            </summary>
+        </member>
+        <member name="M:Nasa.Open.Api.Earth.IEarthAssets.GetAsync(System.Double,System.Double,System.Nullable{System.DateTime},System.Double)">
+            <summary>
+            Detailed information about image available
+            </summary>
+            <param name="latitude">Latitude</param>
+            <param name="longitude">Longitude</param>
+            <param name="date">beginning of 30 day date range that will be used to look for closest image to that date</param>
+            <param name="sizeInDegrees">width and height of image in degrees</param>
+            <returns><c>EarthAssetsData</c></returns>
+            <see cref="T:Nasa.Open.Api.Earth.Models.EarthAssetsData"/>
+        </member>
+        <member name="T:Nasa.Open.Api.Earth.IEarthImage">
+            <summary>
+            This endpoint retrieves the Landsat 8 image for the supplied location and date. 
+            </summary>
+        </member>
+        <member name="M:Nasa.Open.Api.Earth.IEarthImage.GetAsync(System.Double,System.Double,System.Nullable{System.DateTime},System.Double,System.Boolean)">
+            <summary>
+            Note that the returned object may not match the supplied date exactly. Instead, the image closest to the supplied date is returned.
+            </summary>
+            <param name="latitude">Latitude</param>
+            <param name="longitude">Longitude</param>
+            <param name="date">date of image; if not supplied, then the most recent image (i.e., closest to today) is returned</param>
+            <param name="sizeInDegrees">width and height of image in degrees</param>
+            <param name="cloudScore">calculate the percentage of the image covered by clouds [NOT CURRENTLY AVAILABLE!!!!]</param>
+            <returns>Image data byte</returns>
+        </member>
+        <member name="M:Nasa.Open.Api.Extensions.DateTimeExtensions.ToDefault(System.DateTime)">
+            <summary>
+            Return default api.nasa format "yyyy-MM-DD
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Nasa.Open.Api.Mars.Photos.CameraName">
+            <summary>
+            Rover Cameras
+            </summary>
+        </member>
+        <member name="T:Nasa.Open.Api.Mars.Photos.IMarsPhotos">
+            <summary>
+            This API is designed to collect image data gathered by NASA's Curiosity, Opportunity, and Spirit rovers on Mars
+            </summary>
+        </member>
+        <member name="M:Nasa.Open.Api.Mars.Photos.IMarsPhotos.GetAsync(System.DateTime,System.Nullable{Nasa.Open.Api.Mars.Photos.CameraName},System.Int32)">
+            <summary>
+            Querying by Earth date
+            </summary>
+            <param name="earthDate">corresponding date on earth for the given sol</param>
+            <param name="camera"><see cref="T:Nasa.Open.Api.Mars.Photos.CameraName"/></param>
+            <param name="page">25 items per page returned</param>
+            <returns><see cref="T:Nasa.Open.Api.Mars.Photos.Models.MarsData"/></returns>
+        </member>
+        <member name="M:Nasa.Open.Api.Mars.Photos.IMarsPhotos.GetAsync(System.Int32,System.Nullable{Nasa.Open.Api.Mars.Photos.CameraName},System.Int32)">
+            <summary>
+            Querying by Martian sol
+            </summary>
+            <param name="sol">sol (ranges from 0 to max found in endpoint)</param>
+            <param name="camera"><see cref="T:Nasa.Open.Api.Mars.Photos.CameraName"/></param>
+            <param name="page">25 items per page returned</param>
+            <returns><c>MarsData</c></returns>
+        </member>
+        <member name="T:Nasa.Open.Api.Mars.Weather.IMarsWeather">
+            <summary>
+            This API provides per-Sol summary data for each of the last seven available Sols
+            </summary>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.Remaining">
+            <summary>
+            Get Remaining calls available (depend from api key)
+            </summary>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.Limit">
+            <summary>
+            Get Limit calls tu use (depend from api key)
+            http://api.nasa.gov
+            </summary>
+        </member>
+        <member name="M:Nasa.Open.Api.NasaOpenApi.#ctor(System.String)">
+            <summary>
+            Initialize using api_key
+            </summary>
+            <param name="apiKey"></param>
+        </member>
+        <member name="M:Nasa.Open.Api.NasaOpenApi.#ctor(Nasa.Open.Api.Configuration.NasaOpenApiConfiguration)">
+            <summary>
+            Initialize using config
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.Apod">
+            <summary>
+            Interface for APOD https://apod.nasa.gov/apod/astropix.html
+            </summary>
+            <see cref="T:Nasa.Open.Api.APOD.IApod"/>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.NeoFeed">
+            <summary>
+            Retrieve a list of Asteroids based on their closest approach date to Earth
+            </summary>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.INeoFeed"/>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.NeoLookup">
+            <summary>
+            Lookup a specific Asteroid based on its NASA JPL small body (SPK-ID) 
+            </summary>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.INeoLookup"/>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.NeoToday">
+             <summary>
+             Near Earth Objects Today
+             </summary>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.INeoToday"/>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.NeoSentry">
+            <summary>
+            Nasa Earth Impact Monitoring
+            </summary>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.INeoSentry"/>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.NeoBrowse">
+            <summary>
+            Browse the overall Asteroid data-set
+            </summary>
+            <see cref="T:Nasa.Open.Api.AsteroidsNeoWs.INeoBrowse"/>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.MarsPhotos">
+            <summary>
+            This API is designed to collect image data gathered by NASA's Curiosity, Opportunity, and Spirit rovers on Mars
+            </summary>
+            <see cref="T:Nasa.Open.Api.Mars.Photos.IMarsPhotos"/>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.EarthImage">
+            <summary>
+            This endpoint retrieves the Landsat 8 image for the supplied location and date. 
+            </summary>
+            <see cref="T:Nasa.Open.Api.Earth.IEarthImage"/>
+        </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.EarthAssets">
+            <summary>
+            this endpoint retrieves the date-times and asset names for closest available imagery for a supplied location and date.
+            </summary>
+        </member>
+        <member name="T:Nasa.Open.Api.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Nasa.Open.Api.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Nasa.Open.Api.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Nasa.Open.Api.Properties.Resources.DefaultApiDateFormat">
+            <summary>
+              Looks up a localized string similar to yyyy-MM-dd.
+            </summary>
+        </member>
+    </members>
+</doc>
