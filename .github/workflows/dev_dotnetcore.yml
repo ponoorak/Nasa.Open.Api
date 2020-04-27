@@ -44,11 +44,11 @@ jobs:
 #        name: results
 #        path: src/Nasa.Open.Api/bin/Release        
       
-    - name: Upload Artifacts 2
-      uses: actions/upload-artifact@v1
-      with:
-        name: results2        
-        parh: src/Nasa.Open.Api/bin/Release/nuget.config :  
+#    - name: Upload Artifacts 2
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: results2        
+#        parh: src/Nasa.Open.Api/bin/Release/nuget.config :  
              
     - name: Deploy
       working-directory: src/Nasa.Open.Api
