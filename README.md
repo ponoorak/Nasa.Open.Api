@@ -18,9 +18,9 @@ class Program
     {
 	    var api = new NasaOpenApi(ApiKey);
 	    
-            var apodService = api.Apod.GetAsync().Result;
-            var statsService = api.NeoStats.GetAsync().Result;
-            var marsPhotos = api.MarsPhotos.GetAsync(1000, CameraName.FHAZ).Result;
+            var apodService = nasaOpenApi.Apod.GetAsync().Result;
+            var statsService = nasaOpenApi.NeoStats.GetAsync().Result;
+            var marsPhotos = nasaOpenApi.MarsPhotos.GetAsync(1000, CameraName.FHAZ).Result;
 	    var earthImage = nasaOpenApi.EarthImage.GetAsync(54.372158, 8.638306).Result;
             var earthAssets = nasaOpenApi.EarthAssets.GetAsync(54.372158, 8.638306).Result;
 
