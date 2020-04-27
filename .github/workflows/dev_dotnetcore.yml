@@ -34,16 +34,17 @@ jobs:
       working-directory: src/Nasa.Open.Api
       run: dotnet pack --configuration Release
     
+    - name: Setup nuget.config
+      working-directory: src/Nasa.Open.Api
+      run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
+      
     - name: Upload Artifacts
       uses: actions/upload-artifact@v1
       with:
         name: results
         path: src/Nasa.Open.Api/bin/Release
-    
-    - name: Setup nuget.config
-      working-directory: src/Nasa.Open.Api
-      run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
-      
+        parh: src/Nasa.Open.Api/bin/Release/nuget.config 
+             
     - name: Deploy
       working-directory: src/Nasa.Open.Api
       run: dotnet nuget push "bin/Release/Nasa.Open.Api.0.1.0.nupkg" --source https://nuget.pkg.github.com/ponoorak/index.json
