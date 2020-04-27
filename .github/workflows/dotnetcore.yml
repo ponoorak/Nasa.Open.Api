@@ -46,31 +46,31 @@ jobs:
         name: results
         path: src/Nasa.Open.Api/bin/Release      
         
-    - name: Version and Tag
-      id: bump_version
-      uses: mathieudutour/github-tag-action@v4
-      with: 
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Version and Tag
+#      id: bump_version
+#      uses: mathieudutour/github-tag-action@v4
+#      with: 
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
       
-    - name: Prep Version String
-      run: echo ::set-env name=VERSION_NUMBER::$(echo ${{ steps.bump_version.outputs.new_tag }} | sed 's/[v]//g')
+#    - name: Prep Version String
+#      run: echo ::set-env name=VERSION_NUMBER::$(echo ${{ steps.bump_version.outputs.new_tag }} | sed 's/[v]//g')
     
-    - name: Define Package Name
-      run: echo ::set-env name=PACKAGE_NAME::$"src/Nasa.Open.Api/bin/Release/Example.PackageName.${{ env.VERSION_NUMBER }}.nupkg"
+#    - name: Define Package Name
+#      run: echo ::set-env name=PACKAGE_NAME::$"src/Nasa.Open.Api/bin/Release/Example.PackageName.${{ env.VERSION_NUMBER }}.nupkg"
       
-    - name: Create Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.bump_version.outputs.new_tag }}
-        release_name: Release ${{ github.ref }}  
+#    - name: Create Release
+#      uses: actions/create-release@v1
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      with:
+#        tag_name: ${{ steps.bump_version.outputs.new_tag }}
+#        release_name: Release ${{ github.ref }}  
     
 #    - name: Deploy
 #      working-directory: src/Nasa.Open.Api
 #      run: dotnet nuget push "bin/Release/Nasa.Open.Api.0.1.0.nupkg" --source "github"
-    - name: Deploy
-      working-directory: src/Nasa.Open.Api
-      run: find . -name *.nupkg -type f -print0 | xargs -0 -I pkg dotnet nuget push pkg -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
-      env:
+#    - name: Deploy
+#      working-directory: src/Nasa.Open.Api
+#      run: find . -name *.nupkg -type f -print0 | xargs -0 -I pkg dotnet nuget push pkg -k $nuget_api_key -s "https://api.nuget.org/v3/index.json" --skip-duplicate
+#      env:
         nuget_api_key: ${{ secrets.NUGET_API_KEY }}
