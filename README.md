@@ -1,4 +1,4 @@
-# Nasa.Open.Api ![.NET Core](https://github.com/ponoorak/Nasa.Open.Api/workflows/.NET%20Core/badge.svg?branch=master)
+# Nasa.Open.Api ![Release](https://github.com/ponoorak/Nasa.Open.Api/workflows/Release/badge.svg?branch=master)
 Unofficial .NET Wrapper for { NASA APIs } (https://api.nasa.gov)
 
 Underdevelopment, now support: 
