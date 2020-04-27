@@ -1,4 +1,5 @@
-# Nasa.Open.Api ![Release](https://github.com/ponoorak/Nasa.Open.Api/workflows/Release/badge.svg?branch=master)
+# Nasa.Open.Api ![Release](https://github.com/ponoorak/Nasa.Open.Api/workflows/Release/badge.svg?branch=master) [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/ponoorak/Nasa.Open.Api/blob/master/LICENSE)
+
 Unofficial .NET Wrapper for { NASA APIs } (https://api.nasa.gov)
 
 Underdevelopment, now support: 
@@ -16,7 +17,7 @@ class Program
     private const string ApiKey = "DEMO_KEY";
     static void Main(string[] args)
     {
-	    var api = new NasaOpenApi(ApiKey);
+	    var nasaOpenApi = new NasaOpenApi(ApiKey);
 	    
             var apodService = nasaOpenApi.Apod.GetAsync().Result;
             var statsService = nasaOpenApi.NeoStats.GetAsync().Result;
@@ -30,8 +31,8 @@ class Program
             Console.WriteLine($"Result Mars Length = {marsPhotos.Photos.Length}");
 	    Console.WriteLine($"Result Earth DataLength = {earthImage.Length}");
             Console.WriteLine($"Result Earth Assets = {earthAssets.Resource.Dataset}");
-            Console.WriteLine($"Api Remaining Calls = {api.Remaining}");
-	    Console.WriteLine($"Api Limit Calls = {api.Limit}");
+            Console.WriteLine($"Api Remaining Calls = {nasaOpenApi.Remaining}");
+	    Console.WriteLine($"Api Limit Calls = {nasaOpenApi.Limit}");
 	}
 }
 ```
