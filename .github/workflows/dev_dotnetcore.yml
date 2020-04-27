@@ -26,3 +26,11 @@ jobs:
     - name: Test
       working-directory: src/Nasa.Open.Api.Tests
       run: dotnet test --no-restore --verbosity normal
+    
+    - name: Packing
+      working-directory: src/Nasa.Open.Api
+      run: dotnet pack --configuration Release
+    
+    - name: Deploy
+      working-directory: src/Nasa.Open.Api
+      run: dotnet nuget push "bin/Release/Nasa.Open.Api.1.0.0.nupkg" --source https://nuget.pkg.github.com/ponoorak/index.json
