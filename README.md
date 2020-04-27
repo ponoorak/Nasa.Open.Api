@@ -2,11 +2,11 @@
 Unofficial .NET Wrapper for { NASA APIs } (https://api.nasa.gov)
 
 Underdevelopment, now support: 
-	* APOD
-	* NEO
-	* MarsPhotos
-	* EarthPhotos
-	* EarthAssets
+* APOD
+* NEO
+* MarsPhotos
+* EarthPhotos
+* EarthAssets
 	
 # Ussage
 
