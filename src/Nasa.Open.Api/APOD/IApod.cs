@@ -12,9 +12,12 @@ namespace Nasa.Open.Api.APOD
     public interface IApod
     {
         /// <summary>
-        /// Retrieve APOD async
+        /// Return Astronomy Picture Of a Day
         /// </summary>
-        /// <returns></returns>
+        /// <param name="date">The date of the APOD image to retrieve</param>
+        /// <param name="highDefinition">Retrieve the URL for the high resolution image</param>
+        /// <returns>ApodModel</returns>
+        /// <see cref="ApodModel"/>
         Task<ApodModel> GetAsync(DateTime? date = null, bool highDefinition = false);
     }
 }

@@ -10,6 +10,13 @@
     /// </summary>
     public interface INeoFeed
     {
+        /// <summary>
+        /// Retrieve data
+        /// </summary>
+        /// <param name="startDate">Starting date for asteroid search</param>
+        /// <param name="endDate">Ending date for asteroid search</param>
+        /// <returns>AsteroidsFeedData</returns>
+        /// <see cref="AsteroidsFeedData"/>
         Task<AsteroidsFeedData> GetAsync(DateTime startDate, DateTime endDate);
     }
 }

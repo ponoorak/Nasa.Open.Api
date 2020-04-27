@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Nasa.Open.Api.AsteroidsNeoWs
+﻿namespace Nasa.Open.Api.AsteroidsNeoWs
 {
     using System.Threading.Tasks;
     using Attributes;
@@ -15,7 +11,7 @@ namespace Nasa.Open.Api.AsteroidsNeoWs
         {
         }
 
-        public async Task<AsteroidsBrowseData> GetAsync(int page, int size)
+        public async Task<AsteroidsBrowseData> GetAsync()
         {
             var result = await Request<AsteroidsBrowseData>();
             return result;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Nasa.Open.Api.AsteroidsNeoWs
+﻿namespace Nasa.Open.Api.AsteroidsNeoWs
 {
     using System.Threading.Tasks;
     using Attributes;

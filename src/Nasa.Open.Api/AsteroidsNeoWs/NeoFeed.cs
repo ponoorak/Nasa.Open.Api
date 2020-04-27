@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Nasa.Open.Api.AsteroidsNeoWs
+﻿namespace Nasa.Open.Api.AsteroidsNeoWs
 {
+    using System;
     using System.Threading.Tasks;
     using Attributes;
     using Extensions;
@@ -16,9 +13,13 @@ namespace Nasa.Open.Api.AsteroidsNeoWs
         {
         }
 
-        public async Task<AsteroidsFeedData> GetAsync(DateTime startDate, DateTime endDate)
+        public async Task<AsteroidsFeedData> GetAsync(DateTime startDate, DateTime? endDate = null)
         {
-            var messageArgs = new MessageArgs { { "start_date", startDate.ToDefault() }, { "end_date", endDate.ToDefault() } };
+            var messageArgs = new MessageArgs { { "start_date", startDate.ToDefault() } };
+            if (endDate != null)
+            {
+                messageArgs.Add("end_date", endDate.Value.ToDefault());
+            }
 
             var result = await Request<AsteroidsFeedData>(messageArgs);
             return result;

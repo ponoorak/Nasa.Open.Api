@@ -16,7 +16,15 @@
 
     public class NasaOpenApi
     {
+        /// <summary>
+        /// Get Remaining calls available (depend from api key)
+        /// </summary>
         public int Remaining => _nasaOpenApiState.Remaining;
+
+        /// <summary>
+        /// Get Limit calls tu use (depend from api key)
+        /// http://api.nasa.gov
+        /// </summary>
         public int Limit => _nasaOpenApiState.Limit;
 
         private readonly NasaOpenApiState _nasaOpenApiState = new NasaOpenApiState();
