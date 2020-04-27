@@ -17,12 +17,15 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+      
     - name: Install dependencies
       working-directory: src
       run: dotnet restore
+      
     - name: Build
       working-directory: src
       run: dotnet build --configuration Release --no-restore
+      
     - name: Test
       working-directory: src/Nasa.Open.Api.Tests
       run: dotnet test --no-restore --verbosity normal
@@ -31,6 +34,10 @@ jobs:
       working-directory: src/Nasa.Open.Api
       run: dotnet pack --configuration Release
     
+    - name: Setup nuget.config
+      working-directory: src/Nasa.Open.Api
+      run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
+      
     - name: Deploy
       working-directory: src/Nasa.Open.Api
-      run: dotnet nuget push "bin/Release/Nasa.Open.Api.1.0.0.nupkg" --source https://nuget.pkg.github.com/ponoorak/index.json
+      run: dotnet nuget push "bin/Release/Nasa.Open.Api.0.1.0.nupkg" --source https://nuget.pkg.github.com/ponoorak/index.json
