@@ -17,11 +17,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101       
-      
-#    - name: Setup nuget.config
-#      working-directory: src/Nasa.Open.Api
-#      run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
-      
+          
     - name: Install dependencies
       run: dotnet restore
       working-directory: src
@@ -29,6 +25,10 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
       working-directory: src    
+      
+    - name: Setup nuget.config
+      working-directory: src/Nasa.Open.Api
+      run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
       
     - name: Version and Tag
       id: bump_version
