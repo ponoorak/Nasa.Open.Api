@@ -10,7 +10,7 @@
     internal class EarthAssets : Connection, IEarthAssets
     {
         public async Task<EarthAssetsData> GetAsync(double latitude, double longitude, DateTime? date = null, double sizeInDegrees = 0.25)
-        {
+        { 
             var message = new MessageArgs
             {
                 {"lat", latitude},
