@@ -41,14 +41,14 @@ jobs:
       run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
       
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: results
         path: src/Nasa.Open.Api/bin/Release      
         
     - name: Version and Tag
       id: bump_version
-      uses: mathieudutour/github-tag-action@v2
+      uses: mathieudutour/github-tag-action@v3
       with: 
         github_token: ${{ secrets.GITHUB_TOKEN }}
       
