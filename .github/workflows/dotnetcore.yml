@@ -16,16 +16,52 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101          
+        dotnet-version: 3.1.101 
+        source-url: https://nuget.pkg.github.com/ponoorak/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      
+    - name: Setup nuget.config
+      working-directory: src/Nasa.Open.Api
+      run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
+      
     - name: Install dependencies
       run: dotnet restore
       working-directory: src
+      
     - name: Build
       run: dotnet build --configuration Release --no-restore
       working-directory: src    
+      
+    - name: Version and Tag
+      id: bump_version
+      uses: mathieudutour/github-tag-action@v1
+      with: 
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+      
+    - name: Prep Version String
+      run: echo ::set-env name=VERSION_NUMBER::$(echo ${{ steps.bump_version.outputs.new_tag }} | sed 's/[v]//g')
+    
+    - name: Define Package Name
+      run: echo ::set-env name=PACKAGE_NAME::$"src/Nasa.Open.Api/bin/Release/Example.PackageName.${{ env.VERSION_NUMBER }}.nupkg"
+        
+    - name: Set Nuget Package Version
+      uses: roryprimrose/set-vs-sdk-project-version@v1
+      with:
+        version: ${{ env.VERSION_NUMBER }}
+        
     - name: Packing
       working-directory: src/Nasa.Open.Api
       run: dotnet pack --configuration Release
+      
     - name: Deploy
       working-directory: src/Nasa.Open.Api
-      run: dotnet nuget push "bin/Release/Nasa.Open.Api.1.0.0.nupkg" --source "github"
+      run: dotnet nuget push "bin/Release/Nasa.Open.Api.1.0.0.nupkg" --source https://nuget.pkg.github.com/ponoorak/index.json
+    
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.bump_version.outputs.new_tag }}
+        release_name: Release ${{ github.ref }}
