@@ -13,7 +13,7 @@
     }
 
     [EndPoint(Consts.BASE_URL1, "insight_weather")]
-    internal class MarsWeather : Base, IMarsWeather
+    internal class MarsWeather : Connection, IMarsWeather
     {
         public MarsWeather(string apiKey, NasaOpenApiState state) : base(apiKey, state)
         {

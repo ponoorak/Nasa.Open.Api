@@ -8,7 +8,6 @@ namespace Nasa.Open.Api.Framework
 {
     class Program
     {
-        //private const string Api_key = "wc37Bqdjg1LUAwbYBYDpZE6XLuPvUlHYb274vmUs";
         private const string Api_key = "DEMO_KEY";
         static void Main(string[] args)
         {

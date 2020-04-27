@@ -9,7 +9,7 @@ namespace Nasa.Open.Api.AsteroidsNeoWs
     using Models;
 
     [EndPoint(Consts.BASE_URL1, "neo/rest/v1/neo/browse")]
-    internal class NeoBrowse : Base, INeoBrowse
+    internal class NeoBrowse : Connection, INeoBrowse
     {
         public NeoBrowse(string apiKey, NasaOpenApiState state) : base(apiKey, state)
         {

@@ -11,14 +11,14 @@
     using Newtonsoft.Json;
     using NLog;
 
-    internal class Base
+    internal class Connection
     {
-        private readonly ILogger Logger = LogManager.GetCurrentClassLogger();
+        private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         private readonly string _apiKey;
         private readonly NasaOpenApiState _state;
-        private static readonly HttpClient _client = new HttpClient();
+        private static readonly HttpClient Client = new HttpClient();
 
-        public Base(string apiKey, NasaOpenApiState state)
+        public Connection(string apiKey, NasaOpenApiState state)
         {
             _apiKey = apiKey;
             _state = state;
@@ -26,7 +26,7 @@
 
         public async Task<HttpContent> Request(IReadOnlyDictionary<string, object> arguments = null, string suffix = "")
         {
-            Logger.Trace("Request");
+            _logger.Trace("Request");
 
             var att = GetType().GetCustomAttribute<EndPointAttribute>();
             if (att == null)
@@ -36,7 +36,7 @@
 
             var builder = new UriBuilder(att.BaseAddress)
             {
-                Path = att.Path + "/" + suffix
+                Path = !string.IsNullOrWhiteSpace(suffix) ?  att.Path + "/" + suffix : att.Path
             };
 
             var query = HttpUtility.ParseQueryString(builder.Query);
@@ -51,15 +51,16 @@
 
             builder.Query = query.ToString();
 
-            Logger.Debug($"Call To {builder.Uri} {builder.Path}");
-            var s = await _client.GetAsync(builder.Uri);
+            _logger.Debug($"Call To {builder.Uri} {builder.Path}");
+            var s = await Client.GetAsync(builder.Uri);
 
-            Logger.Trace($"Return code: {s.StatusCode}");
+            _logger.Trace($"Return code: {s.StatusCode}");
             s.EnsureSuccessStatusCode();
+
             _state.Remaining = Convert.ToInt32(s.Headers.GetValues("X-RateLimit-Remaining").FirstOrDefault());
             _state.Limit = Convert.ToInt32(s.Headers.GetValues("X-RateLimit-Limit").FirstOrDefault());
 
-            Logger.Debug($"Result Status Remaining:{_state.Remaining} Limit{_state.Limit}");
+            _logger.Debug($"Result Status Remaining:{_state.Remaining} Limit{_state.Limit}");
 
             return s.Content;
 

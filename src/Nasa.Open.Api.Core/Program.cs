@@ -7,13 +7,12 @@ namespace Nasa.Open.Api.Core
 
     class Program
     {
-        
         private const string ApiKey = "DEMO_KEY";
 
         static void Main(string[] args)
         {
             var nasaOpenApi = new NasaOpenApi(ApiKey);
-
+            
             var apodService = nasaOpenApi.Apod.GetAsync().Result;
             var statsService = nasaOpenApi.NeoStats.GetAsync().Result;
             var marsPhotos = nasaOpenApi.MarsPhotos.GetAsync(1000, CameraName.FHAZ).Result;

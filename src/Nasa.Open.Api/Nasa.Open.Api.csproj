@@ -8,6 +8,7 @@
     <PackageProjectUrl>https://github.com/ponoorak/Nasa.Open.Api</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ponoorak/Nasa.Open.Api</RepositoryUrl>
     <Version>1.0.2</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>

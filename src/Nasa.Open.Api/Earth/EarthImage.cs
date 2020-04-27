@@ -6,7 +6,7 @@
     using Extensions;
 
     [EndPoint(Consts.BASE_URL1, "planetary/earth/imagery")]
-    internal class EarthImage : Base, IEarthImage
+    internal class EarthImage : Connection, IEarthImage
     {
         public async Task<byte[]> GetAsync(double latitude, double longitude, DateTime? date = null, double sizeInDegrees = 0.25, bool cloudScore = false)
         {

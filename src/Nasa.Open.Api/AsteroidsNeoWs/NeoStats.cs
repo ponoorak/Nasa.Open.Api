@@ -14,7 +14,7 @@ namespace Nasa.Open.Api.AsteroidsNeoWs
     }
 
     [EndPoint(Consts.BASE_URL1, "neo/rest/v1/stats")]
-    internal class NeoStats : Base, INeoStats
+    internal class NeoStats : Connection, INeoStats
     {
         public NeoStats(string apiKey, NasaOpenApiState state) : base(apiKey, state)
         {

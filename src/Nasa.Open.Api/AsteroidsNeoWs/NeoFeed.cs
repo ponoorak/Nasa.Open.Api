@@ -10,7 +10,7 @@ namespace Nasa.Open.Api.AsteroidsNeoWs
     using Models;
 
     [EndPoint(Consts.BASE_URL1, "neo/rest/v1/feed")]
-    internal class NeoFeed : Base, INeoFeed
+    internal class NeoFeed : Connection, INeoFeed
     {
         public NeoFeed(string apiKey, NasaOpenApiState state) : base(apiKey, state)
         {

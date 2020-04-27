@@ -5,7 +5,7 @@
     using Models;
 
     [EndPoint(Consts.BASE_URL1, "neo/rest/v1/neo")]
-    internal class NeoLookup : Base, INeoLookup
+    internal class NeoLookup : Connection, INeoLookup
     {
         public NeoLookup(string apiKey, NasaOpenApiState state) : base(apiKey, state)
         {
