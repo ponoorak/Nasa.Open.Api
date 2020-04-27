@@ -18,6 +18,9 @@ jobs:
       with:
         dotnet-version: 3.1.101       
           
+    - name: Secret Value
+      run: echo ${{ secrets.GITHUB_TOKEN }}
+          
     - name: Install dependencies
       run: dotnet restore
       working-directory: src
@@ -26,8 +29,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
       working-directory: src    
       
-    - name: Secret Value
-      run: echo ${{ secrets.GITHUB_TOKEN }}
+
       
     - name: Setup nuget.config
       working-directory: src/Nasa.Open.Api
