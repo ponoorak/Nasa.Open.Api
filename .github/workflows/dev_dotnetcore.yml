@@ -42,14 +42,8 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: results
-        path: src/Nasa.Open.Api/bin/Release        
-      
-    - name: Upload Artifacts 2
-      uses: actions/upload-artifact@v1
-      with:
-        name: results
-        path: src/Nasa.Open.Api/nuget.config
-             
+        path: src/Nasa.Open.Api/bin/Release      
+            
     - name: Deploy
       working-directory: src/Nasa.Open.Api
       run: dotnet nuget push "bin/Release/Nasa.Open.Api.0.1.0.nupkg" --source "github"
