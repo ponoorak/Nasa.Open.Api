@@ -5,7 +5,7 @@ namespace Nasa.Open.Api.Tests
 
     public class ApodTest
     {
-        [Fact]
+        [Fact (Skip = "Need Internet Connection... fix to moc")]
         public void DateTest()
         {
             string apiKey = "DEMO_KEY";
