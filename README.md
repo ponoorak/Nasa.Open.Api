@@ -12,7 +12,7 @@ Underdevelopment, now support:
 # Instalation
 
 ```
-Install-Package Nasa.Open.Api -Version 0.1.0
+Install-Package Nasa.Open.Api -Version 0.1.1
 ```
 
 # Ussage
