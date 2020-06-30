@@ -40,7 +40,11 @@
             };
 
             var query = HttpUtility.ParseQueryString(builder.Query);
-            query["api_key"] = _apiKey;
+            if (!string.IsNullOrWhiteSpace(_apiKey))
+            {
+                query["api_key"] = _apiKey;
+            }
+
             if (arguments != null)
             {
                 foreach (var param in arguments)
@@ -57,9 +61,19 @@
             _logger.Trace($"Return code: {s.StatusCode}");
             s.EnsureSuccessStatusCode();
 
-            _state.Remaining = Convert.ToInt32(s.Headers.GetValues("X-RateLimit-Remaining").FirstOrDefault());
-            _state.Limit = Convert.ToInt32(s.Headers.GetValues("X-RateLimit-Limit").FirstOrDefault());
+            IEnumerable<string> val;
+            if (s.Headers.TryGetValues("X-RateLimit-Remaining", out val))
+            {
+                _logger.Debug($"X-RateLimit-Remaining exists. Value {val}");
+                _state.Remaining = Convert.ToInt32(val.FirstOrDefault());
+            }
 
+            if (s.Headers.TryGetValues("X-RateLimit-Limit", out val))
+            {
+                _logger.Debug($"X-RateLimit-Limit exists. Value {val}");
+                _state.Limit = Convert.ToInt32(val.FirstOrDefault());
+            }
+            
             _logger.Debug($"Result Status Remaining:{_state.Remaining} Limit{_state.Limit}");
 
             return s.Content;

@@ -7,6 +7,7 @@
     using Earth;
     using Mars.Photos;
     using Mars.Weather;
+    using TLE;
 
     internal class NasaOpenApiState
     {
@@ -51,6 +52,7 @@
             EarthImage = new EarthImage(apiKey, _nasaOpenApiState);
             EarthAssets = new EarthAssets(apiKey, _nasaOpenApiState);
             //MarsWeather = new MarsWeather(apiKey, _nasaOpenApiState);
+            Tle = new Tle(_nasaOpenApiState);
         }
 
         /// <summary>
@@ -121,5 +123,10 @@
         /// this endpoint retrieves the date-times and asset names for closest available imagery for a supplied location and date.
         /// </summary>
         public IEarthAssets EarthAssets { get; }
+
+        /// <summary>
+        /// The TLE API provides up to date two line element set records, the data is updated daily from CelesTrak and served in JSON format
+        /// </summary>
+        public ITle Tle { get; }
     }
 }
