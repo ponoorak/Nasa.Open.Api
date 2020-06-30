@@ -12,7 +12,7 @@ namespace Nasa.Open.Api.Core
         static void Main(string[] args)
         {
             var nasaOpenApi = new NasaOpenApi(ApiKey);
-            
+            var tle = nasaOpenApi.Tle.GetAsync().Result;
             var apodService = nasaOpenApi.Apod.GetAsync().Result;
             var statsService = nasaOpenApi.NeoStats.GetAsync().Result;
             var marsPhotos = nasaOpenApi.MarsPhotos.GetAsync(1000, CameraName.FHAZ).Result;
@@ -25,6 +25,7 @@ namespace Nasa.Open.Api.Core
             Console.WriteLine($"Result Mars Length = {marsPhotos.Photos.Length}");
             Console.WriteLine($"Result Earth DataLength = {earthImage.Length}");
             Console.WriteLine($"Result Earth Assets = {earthAssets.Resource.Dataset}");
+            Console.WriteLine($"Result TLE Count = {tle.Member.Length}");
             Console.WriteLine($"Api Remaining Calls = {nasaOpenApi.Remaining}");
             Console.WriteLine($"Api Limit Calls = {nasaOpenApi.Limit}");
         }

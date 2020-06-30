@@ -9,5 +9,6 @@ namespace Nasa.Open.Api
     internal static class Consts
     {
         public const string BASE_URL1 = "https://api.nasa.gov";
+        public const string BASE_TLE = "http://data.ivanstanojevic.me";
     }
 }

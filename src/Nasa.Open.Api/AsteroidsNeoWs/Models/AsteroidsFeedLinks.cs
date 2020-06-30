@@ -1,16 +1,17 @@
 ﻿namespace Nasa.Open.Api.AsteroidsNeoWs.Models
 {
+    using System;
     using Newtonsoft.Json;
 
     public class AsteroidsFeedLinks
     {
         [JsonProperty("next")]
-        public string Next { get; set; }
+        public Uri Next { get; set; }
 
         [JsonProperty("prev")]
-        public string Previous { get; set; }
+        public Uri Previous { get; set; }
 
         [JsonProperty("self")]
-        public string Self { get; set; }
+        public Uri Self { get; set; }
     }
 }
