@@ -64,17 +64,17 @@ TwoLineElementsModel result = TwoLineElements.Parse(lines);
 Or
 ```
 line0 = "STARLINK-24
-var result = TleLine0Parser.Parse(line0)
+string result = TleLine0Parser.Parse(line0)
 ```
 Or
 ```
 line1 = "1 25544U 98067A   08264.51782528 -.00002182  00000-0 -11606-4 0  2927";
-var result = TleLine1Parser.Parse(line1)
+Line1Model result = TleLine1Parser.Parse(line1)
 ```
 Or
 ```
 line2 = "2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537";
-var result = TleLine2Parser.Parse(line2)
+Line2Model result = TleLine2Parser.Parse(line2)
 ```
 
 
