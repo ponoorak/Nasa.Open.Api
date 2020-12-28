@@ -61,8 +61,7 @@
             _logger.Trace($"Return code: {s.StatusCode}");
             s.EnsureSuccessStatusCode();
 
-            IEnumerable<string> val;
-            if (s.Headers.TryGetValues("X-RateLimit-Remaining", out val))
+            if (s.Headers.TryGetValues("X-RateLimit-Remaining", out var val))
             {
                 _logger.Debug($"X-RateLimit-Remaining exists. Value {val}");
                 _state.Remaining = Convert.ToInt32(val.FirstOrDefault());

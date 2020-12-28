@@ -264,6 +264,11 @@
             this endpoint retrieves the date-times and asset names for closest available imagery for a supplied location and date.
             </summary>
         </member>
+        <member name="P:Nasa.Open.Api.NasaOpenApi.Tle">
+            <summary>
+            The TLE API provides up to date two line element set records, the data is updated daily from CelesTrak and served in JSON format
+            </summary>
+        </member>
         <member name="T:Nasa.Open.Api.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -283,6 +288,11 @@
         <member name="P:Nasa.Open.Api.Properties.Resources.DefaultApiDateFormat">
             <summary>
               Looks up a localized string similar to yyyy-MM-dd.
+            </summary>
+        </member>
+        <member name="T:Nasa.Open.Api.TLE.ITle">
+            <summary>
+            The TLE API provides up to date two line element set records, the data is updated daily from CelesTrak and served in JSON format
             </summary>
         </member>
     </members>
